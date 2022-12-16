@@ -6520,7 +6520,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="ANSELA"/>
-         <value>255</value>
+         <value>223</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="ANSELB"/>
@@ -7060,7 +7060,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="ANSELA" settingAlias="ANSELA5"/>
-         <value>analog</value>
+         <value>digital</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="ANSELA" settingAlias="ANSELA6"/>
@@ -10139,5 +10139,42 @@
          <value>Window delay time 87.5%</value>
       </entry>
    </tokenMap>
-   <generatedFileHashHistoryMap class="java.util.TreeMap"/>
+   <generatedFileHashHistoryMap class="java.util.HashMap">
+      <entry>
+         <file>mcc_generated_files\mcc.h</file>
+         <hash>331774d279189f60299711c3799bc1c7b49b08ad1c01a081ae39e66982e3b135</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\device_config.h</file>
+         <hash>3d440ce4aab7e03a985e203e44550478ea7c99e5ec51aaba6130286970e1c751</hash>
+      </entry>
+      <entry>
+         <file>main.c</file>
+         <hash>58bf9902cacfdeda010278a5a0a1e624daa8b6bb84eac8a255bc55d84cfdf5ce</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\device_config.c</file>
+         <hash>dcc8cca7d5b9847661792816a8fd7dace47e4ed352ffe1e3229212c741e0c3c5</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\spi1.h</file>
+         <hash>181cf663bf7302882d5cdc69d5786ff7485820aab6e121f2deb569066a792485</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pin_manager.h</file>
+         <hash>b09f26d0e09f90d0152ff1f9aca51971d6183d49ba2aa60b341016ad4b72e677</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\mcc.c</file>
+         <hash>18151644da06d81b851013d15af666b5e68835f027b8eb39043df06818889b1c</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\spi1.c</file>
+         <hash>c8d89db92d7895df5bd5ba459f4c0a65f43b44c8e79c407b07828036af669dc1</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pin_manager.c</file>
+         <hash>44581bc09cc0a5496160be5413be21e2ac722ccc6c33faf33f6c0bd9107f8ec4</hash>
+      </entry>
+   </generatedFileHashHistoryMap>
 </config>

@@ -1,0 +1,2478 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"247 SSD1306.c
+[; ;SSD1306.c: 247:     I2C1_Start();
+[v _I2C1_Start `(i ~T0 @X0 0 e? ]
+"248
+[; ;SSD1306.c: 248:     I2C1_Wr(_i2caddr);
+[v _I2C1_Wr `(i ~T0 @X0 0 e? ]
+"251
+[; ;SSD1306.c: 251:     I2C1_Stop();
+[v _I2C1_Stop `(i ~T0 @X0 0 e? ]
+"262
+[; ;SSD1306.c: 262:   delay_ms(10);
+[v _delay_ms `(i ~T0 @X0 0 e? ]
+"141
+[; ;SSD1306.c: 141: void drawVLine(uint8_t x, uint8_t y, uint8_t h, uint8_t color);
+[v _drawVLine `(v ~T0 @X0 0 ef4`uc`uc`uc`uc ]
+"158
+[; ;SSD1306.c: 158: void drawFastVLineInternal(uint8_t x, uint8_t __y, uint8_t __h, uint8_t color);
+[v _drawFastVLineInternal `(v ~T0 @X0 0 ef4`uc`uc`uc`uc ]
+"157
+[; ;SSD1306.c: 157: void drawFastHLineInternal(uint8_t x, uint8_t y, uint8_t w, uint8_t color);
+[v _drawFastHLineInternal `(v ~T0 @X0 0 ef4`uc`uc`uc`uc ]
+"122 SSD1306.c
+[; ;SSD1306.c: 122: uint8_t _vccstate,
+[v __vccstate `uc ~T0 @X0 1 e ]
+"123
+[; ;SSD1306.c: 123:         rotation = 0;
+[v _rotation `uc ~T0 @X0 1 e ]
+[i _rotation
+-> -> 0 `i `uc
+]
+"125
+[; ;SSD1306.c: 125: uint8_t _i2caddr;
+[v __i2caddr `uc ~T0 @X0 1 e ]
+"128
+[; ;SSD1306.c: 128:   _width,
+[v __width `uc ~T0 @X0 1 e ]
+"129
+[; ;SSD1306.c: 129:   _height;
+[v __height `uc ~T0 @X0 1 e ]
+"164
+[; ;SSD1306.c: 164: static uint8_t ssd1306_buffer[64 * 128 / 8] = {
+[v _ssd1306_buffer `uc ~T0 @X0 -> 1024 `i s ]
+[i _ssd1306_buffer
+:U ..
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 192 `i `uc
+-> -> 192 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 192 `i `uc
+-> -> 224 `i `uc
+-> -> 240 `i `uc
+-> -> 248 `i `uc
+-> -> 252 `i `uc
+-> -> 248 `i `uc
+-> -> 224 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 140 `i `uc
+-> -> 142 `i `uc
+-> -> 132 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 248 `i `uc
+-> -> 248 `i `uc
+-> -> 248 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 224 `i `uc
+-> -> 224 `i `uc
+-> -> 192 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 224 `i `uc
+-> -> 252 `i `uc
+-> -> 254 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 127 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 254 `i `uc
+-> -> 255 `i `uc
+-> -> 199 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 131 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 124 `i `uc
+-> -> 254 `i `uc
+-> -> 199 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 131 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 0 `i `uc
+-> -> 56 `i `uc
+-> -> 254 `i `uc
+-> -> 199 `i `uc
+-> -> 131 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 131 `i `uc
+-> -> 199 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 7 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 127 `i `uc
+-> -> 255 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 127 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 3 `i `uc
+-> -> 15 `i `uc
+-> -> 63 `i `uc
+-> -> 127 `i `uc
+-> -> 127 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 231 `i `uc
+-> -> 199 `i `uc
+-> -> 199 `i `uc
+-> -> 143 `i `uc
+-> -> 143 `i `uc
+-> -> 159 `i `uc
+-> -> 191 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 195 `i `uc
+-> -> 192 `i `uc
+-> -> 240 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 252 `i `uc
+-> -> 252 `i `uc
+-> -> 252 `i `uc
+-> -> 252 `i `uc
+-> -> 252 `i `uc
+-> -> 252 `i `uc
+-> -> 252 `i `uc
+-> -> 252 `i `uc
+-> -> 248 `i `uc
+-> -> 248 `i `uc
+-> -> 240 `i `uc
+-> -> 240 `i `uc
+-> -> 224 `i `uc
+-> -> 192 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 1 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 3 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 1 `i `uc
+-> -> 1 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 3 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 3 `i `uc
+-> -> 3 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 192 `i `uc
+-> -> 224 `i `uc
+-> -> 240 `i `uc
+-> -> 249 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 63 `i `uc
+-> -> 31 `i `uc
+-> -> 15 `i `uc
+-> -> 135 `i `uc
+-> -> 199 `i `uc
+-> -> 247 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 31 `i `uc
+-> -> 31 `i `uc
+-> -> 61 `i `uc
+-> -> 252 `i `uc
+-> -> 248 `i `uc
+-> -> 248 `i `uc
+-> -> 248 `i `uc
+-> -> 248 `i `uc
+-> -> 124 `i `uc
+-> -> 125 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 127 `i `uc
+-> -> 63 `i `uc
+-> -> 15 `i `uc
+-> -> 7 `i `uc
+-> -> 0 `i `uc
+-> -> 48 `i `uc
+-> -> 48 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 254 `i `uc
+-> -> 254 `i `uc
+-> -> 252 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 224 `i `uc
+-> -> 192 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 48 `i `uc
+-> -> 48 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 192 `i `uc
+-> -> 254 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 127 `i `uc
+-> -> 127 `i `uc
+-> -> 63 `i `uc
+-> -> 31 `i `uc
+-> -> 15 `i `uc
+-> -> 7 `i `uc
+-> -> 31 `i `uc
+-> -> 127 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 248 `i `uc
+-> -> 248 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 254 `i `uc
+-> -> 248 `i `uc
+-> -> 224 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 254 `i `uc
+-> -> 254 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 252 `i `uc
+-> -> 254 `i `uc
+-> -> 252 `i `uc
+-> -> 12 `i `uc
+-> -> 6 `i `uc
+-> -> 6 `i `uc
+-> -> 14 `i `uc
+-> -> 252 `i `uc
+-> -> 248 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 240 `i `uc
+-> -> 248 `i `uc
+-> -> 28 `i `uc
+-> -> 14 `i `uc
+-> -> 6 `i `uc
+-> -> 6 `i `uc
+-> -> 6 `i `uc
+-> -> 12 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 254 `i `uc
+-> -> 254 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 252 `i `uc
+-> -> 254 `i `uc
+-> -> 252 `i `uc
+-> -> 0 `i `uc
+-> -> 24 `i `uc
+-> -> 60 `i `uc
+-> -> 126 `i `uc
+-> -> 102 `i `uc
+-> -> 230 `i `uc
+-> -> 206 `i `uc
+-> -> 132 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 6 `i `uc
+-> -> 255 `i `uc
+-> -> 255 `i `uc
+-> -> 6 `i `uc
+-> -> 6 `i `uc
+-> -> 252 `i `uc
+-> -> 254 `i `uc
+-> -> 252 `i `uc
+-> -> 12 `i `uc
+-> -> 6 `i `uc
+-> -> 6 `i `uc
+-> -> 6 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 254 `i `uc
+-> -> 254 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 192 `i `uc
+-> -> 248 `i `uc
+-> -> 252 `i `uc
+-> -> 78 `i `uc
+-> -> 70 `i `uc
+-> -> 70 `i `uc
+-> -> 70 `i `uc
+-> -> 78 `i `uc
+-> -> 124 `i `uc
+-> -> 120 `i `uc
+-> -> 64 `i `uc
+-> -> 24 `i `uc
+-> -> 60 `i `uc
+-> -> 118 `i `uc
+-> -> 230 `i `uc
+-> -> 206 `i `uc
+-> -> 204 `i `uc
+-> -> 128 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 7 `i `uc
+-> -> 15 `i `uc
+-> -> 31 `i `uc
+-> -> 31 `i `uc
+-> -> 63 `i `uc
+-> -> 63 `i `uc
+-> -> 63 `i `uc
+-> -> 63 `i `uc
+-> -> 31 `i `uc
+-> -> 15 `i `uc
+-> -> 3 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 3 `i `uc
+-> -> 7 `i `uc
+-> -> 14 `i `uc
+-> -> 12 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 12 `i `uc
+-> -> 6 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 15 `i `uc
+-> -> 14 `i `uc
+-> -> 12 `i `uc
+-> -> 24 `i `uc
+-> -> 12 `i `uc
+-> -> 15 `i `uc
+-> -> 7 `i `uc
+-> -> 1 `i `uc
+-> -> 0 `i `uc
+-> -> 4 `i `uc
+-> -> 14 `i `uc
+-> -> 12 `i `uc
+-> -> 24 `i `uc
+-> -> 12 `i `uc
+-> -> 15 `i `uc
+-> -> 7 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 7 `i `uc
+-> -> 7 `i `uc
+-> -> 12 `i `uc
+-> -> 12 `i `uc
+-> -> 24 `i `uc
+-> -> 28 `i `uc
+-> -> 12 `i `uc
+-> -> 6 `i `uc
+-> -> 6 `i `uc
+-> -> 0 `i `uc
+-> -> 4 `i `uc
+-> -> 14 `i `uc
+-> -> 12 `i `uc
+-> -> 24 `i `uc
+-> -> 12 `i `uc
+-> -> 15 `i `uc
+-> -> 7 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+..
+]
+"237
+[; ;SSD1306.c: 237: void ssd1306_command(uint8_t c)
+[v _ssd1306_command `(v ~T0 @X0 1 ef1`uc ]
+"238
+[; ;SSD1306.c: 238: {
+{
+[e :U _ssd1306_command ]
+"237
+[; ;SSD1306.c: 237: void ssd1306_command(uint8_t c)
+[v _c `uc ~T0 @X0 1 r1 ]
+"238
+[; ;SSD1306.c: 238: {
+[f ]
+"246
+[; ;SSD1306.c: 246:     uint8_t control = 0x00;
+[v _control `uc ~T0 @X0 1 a ]
+[e = _control -> -> 0 `i `uc ]
+"247
+[; ;SSD1306.c: 247:     I2C1_Start();
+[e ( _I2C1_Start ..  ]
+"248
+[; ;SSD1306.c: 248:     I2C1_Wr(_i2caddr);
+[e ( _I2C1_Wr -> __i2caddr `i ]
+"249
+[; ;SSD1306.c: 249:     I2C1_Wr(control);
+[e ( _I2C1_Wr -> _control `i ]
+"250
+[; ;SSD1306.c: 250:     I2C1_Wr(c);
+[e ( _I2C1_Wr -> _c `i ]
+"251
+[; ;SSD1306.c: 251:     I2C1_Stop();
+[e ( _I2C1_Stop ..  ]
+"253
+[; ;SSD1306.c: 253: }
+[e :UE 1 ]
+}
+"258
+[; ;SSD1306.c: 258: void SSD1306_begin(uint8_t vccstate, uint8_t i2caddr) {
+[v _SSD1306_begin `(v ~T0 @X0 1 ef2`uc`uc ]
+{
+[e :U _SSD1306_begin ]
+[v _vccstate `uc ~T0 @X0 1 r1 ]
+[v _i2caddr `uc ~T0 @X0 1 r2 ]
+[f ]
+"259
+[; ;SSD1306.c: 259:   _i2caddr = i2caddr;
+[e = __i2caddr _i2caddr ]
+"261
+[; ;SSD1306.c: 261:   _vccstate = vccstate;
+[e = __vccstate _vccstate ]
+"262
+[; ;SSD1306.c: 262:   delay_ms(10);
+[e ( _delay_ms -> 10 `i ]
+"285
+[; ;SSD1306.c: 285:   ssd1306_command(0xAE);
+[e ( _ssd1306_command (1 -> -> 174 `i `uc ]
+"286
+[; ;SSD1306.c: 286:   ssd1306_command(0xD5);
+[e ( _ssd1306_command (1 -> -> 213 `i `uc ]
+"287
+[; ;SSD1306.c: 287:   ssd1306_command(0x80);
+[e ( _ssd1306_command (1 -> -> 128 `i `uc ]
+"289
+[; ;SSD1306.c: 289:   ssd1306_command(0xA8);
+[e ( _ssd1306_command (1 -> -> 168 `i `uc ]
+"290
+[; ;SSD1306.c: 290:   ssd1306_command(64 - 1);
+[e ( _ssd1306_command (1 -> - -> 64 `i -> 1 `i `uc ]
+"292
+[; ;SSD1306.c: 292:   ssd1306_command(0xD3);
+[e ( _ssd1306_command (1 -> -> 211 `i `uc ]
+"293
+[; ;SSD1306.c: 293:   ssd1306_command(0x0);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"294
+[; ;SSD1306.c: 294:   ssd1306_command(0x40 | 0x0);
+[e ( _ssd1306_command (1 -> | -> 64 `i -> 0 `i `uc ]
+"295
+[; ;SSD1306.c: 295:   ssd1306_command(0x8D);
+[e ( _ssd1306_command (1 -> -> 141 `i `uc ]
+"296
+[; ;SSD1306.c: 296:   if (vccstate == 0x01)
+[e $ ! == -> _vccstate `i -> 1 `i 3  ]
+"297
+[; ;SSD1306.c: 297:     { ssd1306_command(0x10); }
+{
+[e ( _ssd1306_command (1 -> -> 16 `i `uc ]
+}
+[e $U 4  ]
+"298
+[; ;SSD1306.c: 298:   else
+[e :U 3 ]
+"299
+[; ;SSD1306.c: 299:     { ssd1306_command(0x14); }
+{
+[e ( _ssd1306_command (1 -> -> 20 `i `uc ]
+}
+[e :U 4 ]
+"300
+[; ;SSD1306.c: 300:   ssd1306_command(0x20);
+[e ( _ssd1306_command (1 -> -> 32 `i `uc ]
+"301
+[; ;SSD1306.c: 301:   ssd1306_command(0x00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"302
+[; ;SSD1306.c: 302:   ssd1306_command(0xA0 | 0x1);
+[e ( _ssd1306_command (1 -> | -> 160 `i -> 1 `i `uc ]
+"303
+[; ;SSD1306.c: 303:   ssd1306_command(0xC8);
+[e ( _ssd1306_command (1 -> -> 200 `i `uc ]
+"312
+[; ;SSD1306.c: 312:   ssd1306_command(0xDA);
+[e ( _ssd1306_command (1 -> -> 218 `i `uc ]
+"313
+[; ;SSD1306.c: 313:   ssd1306_command(0x12);
+[e ( _ssd1306_command (1 -> -> 18 `i `uc ]
+"314
+[; ;SSD1306.c: 314:   ssd1306_command(0x81);
+[e ( _ssd1306_command (1 -> -> 129 `i `uc ]
+"315
+[; ;SSD1306.c: 315:   if (vccstate == 0x01)
+[e $ ! == -> _vccstate `i -> 1 `i 5  ]
+"316
+[; ;SSD1306.c: 316:     { ssd1306_command(0x9F); }
+{
+[e ( _ssd1306_command (1 -> -> 159 `i `uc ]
+}
+[e $U 6  ]
+"317
+[; ;SSD1306.c: 317:   else
+[e :U 5 ]
+"318
+[; ;SSD1306.c: 318:     { ssd1306_command(0xCF); }
+{
+[e ( _ssd1306_command (1 -> -> 207 `i `uc ]
+}
+[e :U 6 ]
+"331
+[; ;SSD1306.c: 331:   ssd1306_command(0xD9);
+[e ( _ssd1306_command (1 -> -> 217 `i `uc ]
+"332
+[; ;SSD1306.c: 332:   if (vccstate == 0x01)
+[e $ ! == -> _vccstate `i -> 1 `i 7  ]
+"333
+[; ;SSD1306.c: 333:     { ssd1306_command(0x22); }
+{
+[e ( _ssd1306_command (1 -> -> 34 `i `uc ]
+}
+[e $U 8  ]
+"334
+[; ;SSD1306.c: 334:   else
+[e :U 7 ]
+"335
+[; ;SSD1306.c: 335:     { ssd1306_command(0xF1); }
+{
+[e ( _ssd1306_command (1 -> -> 241 `i `uc ]
+}
+[e :U 8 ]
+"336
+[; ;SSD1306.c: 336:   ssd1306_command(0xDB);
+[e ( _ssd1306_command (1 -> -> 219 `i `uc ]
+"337
+[; ;SSD1306.c: 337:   ssd1306_command(0x40);
+[e ( _ssd1306_command (1 -> -> 64 `i `uc ]
+"338
+[; ;SSD1306.c: 338:   ssd1306_command(0xA4);
+[e ( _ssd1306_command (1 -> -> 164 `i `uc ]
+"339
+[; ;SSD1306.c: 339:   ssd1306_command(0xA6);
+[e ( _ssd1306_command (1 -> -> 166 `i `uc ]
+"341
+[; ;SSD1306.c: 341:   ssd1306_command(0x2E);
+[e ( _ssd1306_command (1 -> -> 46 `i `uc ]
+"343
+[; ;SSD1306.c: 343:   ssd1306_command(0xAF);
+[e ( _ssd1306_command (1 -> -> 175 `i `uc ]
+"345
+[; ;SSD1306.c: 345:   _height = 64;
+[e = __height -> -> 64 `i `uc ]
+"346
+[; ;SSD1306.c: 346:   _width = 128;
+[e = __width -> -> 128 `i `uc ]
+"347
+[; ;SSD1306.c: 347: }
+[e :UE 2 ]
+}
+"350
+[; ;SSD1306.c: 350: void drawPixel(uint8_t x, uint8_t y, uint8_t color) {
+[v _drawPixel `(v ~T0 @X0 1 ef3`uc`uc`uc ]
+{
+[e :U _drawPixel ]
+[v _x `uc ~T0 @X0 1 r1 ]
+[v _y `uc ~T0 @X0 1 r2 ]
+[v _color `uc ~T0 @X0 1 r3 ]
+[f ]
+"351
+[; ;SSD1306.c: 351:   if ((x >= _width) || (y >= _height))
+[e $ ! || >= -> _x `i -> __width `i >= -> _y `i -> __height `i 10  ]
+"352
+[; ;SSD1306.c: 352:     return;
+[e $UE 9  ]
+[e :U 10 ]
+"355
+[; ;SSD1306.c: 355:   switch (rotation) {
+[e $U 12  ]
+{
+"356
+[; ;SSD1306.c: 356:   case 1:
+[e :U 13 ]
+"357
+[; ;SSD1306.c: 357:     { uint8_t t = x; x = y; y = t; };
+{
+[v _t `uc ~T0 @X0 1 a ]
+[e = _t _x ]
+[e = _x _y ]
+[e = _y _t ]
+}
+"358
+[; ;SSD1306.c: 358:     x = 128 - x - 1;
+[e = _x -> - - -> 128 `i -> _x `i -> 1 `i `uc ]
+"359
+[; ;SSD1306.c: 359:     break;
+[e $U 11  ]
+"360
+[; ;SSD1306.c: 360:   case 2:
+[e :U 14 ]
+"361
+[; ;SSD1306.c: 361:     x = 128 - x - 1;
+[e = _x -> - - -> 128 `i -> _x `i -> 1 `i `uc ]
+"362
+[; ;SSD1306.c: 362:     y = 64 - y - 1;
+[e = _y -> - - -> 64 `i -> _y `i -> 1 `i `uc ]
+"363
+[; ;SSD1306.c: 363:     break;
+[e $U 11  ]
+"364
+[; ;SSD1306.c: 364:   case 3:
+[e :U 15 ]
+"365
+[; ;SSD1306.c: 365:     { uint8_t t = x; x = y; y = t; };
+{
+[v _t `uc ~T0 @X0 1 a ]
+[e = _t _x ]
+[e = _x _y ]
+[e = _y _t ]
+}
+"366
+[; ;SSD1306.c: 366:     y = 64 - y - 1;
+[e = _y -> - - -> 64 `i -> _y `i -> 1 `i `uc ]
+"367
+[; ;SSD1306.c: 367:     break;
+[e $U 11  ]
+"368
+[; ;SSD1306.c: 368:   }
+}
+[e $U 11  ]
+[e :U 12 ]
+[e [\ -> _rotation `i , $ -> 1 `i 13
+ , $ -> 2 `i 14
+ , $ -> 3 `i 15
+ 11 ]
+[e :U 11 ]
+"371
+[; ;SSD1306.c: 371:     switch (color)
+[e $U 17  ]
+"372
+[; ;SSD1306.c: 372:     {
+{
+"373
+[; ;SSD1306.c: 373:       case 1: ssd1306_buffer[x + (uint16_t)(y/8) * 128] |= (1 << (y&7)); break;
+[e :U 18 ]
+[e =| *U + &U _ssd1306_buffer * -> + -> _x `ui * -> -> / -> _y `i -> 8 `i `us `ui -> -> 128 `i `ui `ux -> -> # *U &U _ssd1306_buffer `ui `ux -> << -> 1 `i & -> _y `i -> 7 `i `uc ]
+[e $U 16  ]
+"374
+[; ;SSD1306.c: 374:       case 0: ssd1306_buffer[x + (uint16_t)(y/8) * 128] &= ~(1 << (y&7)); break;
+[e :U 19 ]
+[e =& *U + &U _ssd1306_buffer * -> + -> _x `ui * -> -> / -> _y `i -> 8 `i `us `ui -> -> 128 `i `ui `ux -> -> # *U &U _ssd1306_buffer `ui `ux -> ~ << -> 1 `i & -> _y `i -> 7 `i `uc ]
+[e $U 16  ]
+"375
+[; ;SSD1306.c: 375:       case 2: ssd1306_buffer[x + (uint16_t)(y/8) * 128] ^= (1 << (y&7)); break;
+[e :U 20 ]
+[e =^ *U + &U _ssd1306_buffer * -> + -> _x `ui * -> -> / -> _y `i -> 8 `i `us `ui -> -> 128 `i `ui `ux -> -> # *U &U _ssd1306_buffer `ui `ux -> << -> 1 `i & -> _y `i -> 7 `i `uc ]
+[e $U 16  ]
+"376
+[; ;SSD1306.c: 376:     }
+}
+[e $U 16  ]
+[e :U 17 ]
+[e [\ -> _color `i , $ -> 1 `i 18
+ , $ -> 0 `i 19
+ , $ -> 2 `i 20
+ 16 ]
+[e :U 16 ]
+"378
+[; ;SSD1306.c: 378: }
+[e :UE 9 ]
+}
+"384
+[; ;SSD1306.c: 384: void display_startScrollRight(uint8_t start, uint8_t stop)
+[v _display_startScrollRight `(v ~T0 @X0 1 ef2`uc`uc ]
+"385
+[; ;SSD1306.c: 385: {
+{
+[e :U _display_startScrollRight ]
+"384
+[; ;SSD1306.c: 384: void display_startScrollRight(uint8_t start, uint8_t stop)
+[v _start `uc ~T0 @X0 1 r1 ]
+[v _stop `uc ~T0 @X0 1 r2 ]
+"385
+[; ;SSD1306.c: 385: {
+[f ]
+"386
+[; ;SSD1306.c: 386:   ssd1306_command(0x26);
+[e ( _ssd1306_command (1 -> -> 38 `i `uc ]
+"387
+[; ;SSD1306.c: 387:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"388
+[; ;SSD1306.c: 388:   ssd1306_command(start);
+[e ( _ssd1306_command (1 _start ]
+"389
+[; ;SSD1306.c: 389:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"390
+[; ;SSD1306.c: 390:   ssd1306_command(stop);
+[e ( _ssd1306_command (1 _stop ]
+"391
+[; ;SSD1306.c: 391:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"392
+[; ;SSD1306.c: 392:   ssd1306_command(0XFF);
+[e ( _ssd1306_command (1 -> -> 255 `i `uc ]
+"393
+[; ;SSD1306.c: 393:   ssd1306_command(0x2F);
+[e ( _ssd1306_command (1 -> -> 47 `i `uc ]
+"394
+[; ;SSD1306.c: 394: }
+[e :UE 21 ]
+}
+"400
+[; ;SSD1306.c: 400: void display_startScrollLeft(uint8_t start, uint8_t stop)
+[v _display_startScrollLeft `(v ~T0 @X0 1 ef2`uc`uc ]
+"401
+[; ;SSD1306.c: 401: {
+{
+[e :U _display_startScrollLeft ]
+"400
+[; ;SSD1306.c: 400: void display_startScrollLeft(uint8_t start, uint8_t stop)
+[v _start `uc ~T0 @X0 1 r1 ]
+[v _stop `uc ~T0 @X0 1 r2 ]
+"401
+[; ;SSD1306.c: 401: {
+[f ]
+"402
+[; ;SSD1306.c: 402:   ssd1306_command(0x27);
+[e ( _ssd1306_command (1 -> -> 39 `i `uc ]
+"403
+[; ;SSD1306.c: 403:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"404
+[; ;SSD1306.c: 404:   ssd1306_command(start);
+[e ( _ssd1306_command (1 _start ]
+"405
+[; ;SSD1306.c: 405:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"406
+[; ;SSD1306.c: 406:   ssd1306_command(stop);
+[e ( _ssd1306_command (1 _stop ]
+"407
+[; ;SSD1306.c: 407:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"408
+[; ;SSD1306.c: 408:   ssd1306_command(0XFF);
+[e ( _ssd1306_command (1 -> -> 255 `i `uc ]
+"409
+[; ;SSD1306.c: 409:   ssd1306_command(0x2F);
+[e ( _ssd1306_command (1 -> -> 47 `i `uc ]
+"410
+[; ;SSD1306.c: 410: }
+[e :UE 22 ]
+}
+"416
+[; ;SSD1306.c: 416: void display_startScrollDiagRight(uint8_t start, uint8_t stop)
+[v _display_startScrollDiagRight `(v ~T0 @X0 1 ef2`uc`uc ]
+"417
+[; ;SSD1306.c: 417: {
+{
+[e :U _display_startScrollDiagRight ]
+"416
+[; ;SSD1306.c: 416: void display_startScrollDiagRight(uint8_t start, uint8_t stop)
+[v _start `uc ~T0 @X0 1 r1 ]
+[v _stop `uc ~T0 @X0 1 r2 ]
+"417
+[; ;SSD1306.c: 417: {
+[f ]
+"418
+[; ;SSD1306.c: 418:   ssd1306_command(0xA3);
+[e ( _ssd1306_command (1 -> -> 163 `i `uc ]
+"419
+[; ;SSD1306.c: 419:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"420
+[; ;SSD1306.c: 420:   ssd1306_command(64);
+[e ( _ssd1306_command (1 -> -> 64 `i `uc ]
+"421
+[; ;SSD1306.c: 421:   ssd1306_command(0x29);
+[e ( _ssd1306_command (1 -> -> 41 `i `uc ]
+"422
+[; ;SSD1306.c: 422:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"423
+[; ;SSD1306.c: 423:   ssd1306_command(start);
+[e ( _ssd1306_command (1 _start ]
+"424
+[; ;SSD1306.c: 424:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"425
+[; ;SSD1306.c: 425:   ssd1306_command(stop);
+[e ( _ssd1306_command (1 _stop ]
+"426
+[; ;SSD1306.c: 426:   ssd1306_command(0X01);
+[e ( _ssd1306_command (1 -> -> 1 `i `uc ]
+"427
+[; ;SSD1306.c: 427:   ssd1306_command(0x2F);
+[e ( _ssd1306_command (1 -> -> 47 `i `uc ]
+"428
+[; ;SSD1306.c: 428: }
+[e :UE 23 ]
+}
+"434
+[; ;SSD1306.c: 434: void display_startScrollDiagLeft(uint8_t start, uint8_t stop)
+[v _display_startScrollDiagLeft `(v ~T0 @X0 1 ef2`uc`uc ]
+"435
+[; ;SSD1306.c: 435: {
+{
+[e :U _display_startScrollDiagLeft ]
+"434
+[; ;SSD1306.c: 434: void display_startScrollDiagLeft(uint8_t start, uint8_t stop)
+[v _start `uc ~T0 @X0 1 r1 ]
+[v _stop `uc ~T0 @X0 1 r2 ]
+"435
+[; ;SSD1306.c: 435: {
+[f ]
+"436
+[; ;SSD1306.c: 436:   ssd1306_command(0xA3);
+[e ( _ssd1306_command (1 -> -> 163 `i `uc ]
+"437
+[; ;SSD1306.c: 437:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"438
+[; ;SSD1306.c: 438:   ssd1306_command(64);
+[e ( _ssd1306_command (1 -> -> 64 `i `uc ]
+"439
+[; ;SSD1306.c: 439:   ssd1306_command(0x2A);
+[e ( _ssd1306_command (1 -> -> 42 `i `uc ]
+"440
+[; ;SSD1306.c: 440:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"441
+[; ;SSD1306.c: 441:   ssd1306_command(start);
+[e ( _ssd1306_command (1 _start ]
+"442
+[; ;SSD1306.c: 442:   ssd1306_command(0X00);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"443
+[; ;SSD1306.c: 443:   ssd1306_command(stop);
+[e ( _ssd1306_command (1 _stop ]
+"444
+[; ;SSD1306.c: 444:   ssd1306_command(0X01);
+[e ( _ssd1306_command (1 -> -> 1 `i `uc ]
+"445
+[; ;SSD1306.c: 445:   ssd1306_command(0x2F);
+[e ( _ssd1306_command (1 -> -> 47 `i `uc ]
+"446
+[; ;SSD1306.c: 446: }
+[e :UE 24 ]
+}
+"448
+[; ;SSD1306.c: 448: void display_stopScroll(void)
+[v _display_stopScroll `(v ~T0 @X0 1 ef ]
+"449
+[; ;SSD1306.c: 449: {
+{
+[e :U _display_stopScroll ]
+[f ]
+"450
+[; ;SSD1306.c: 450:   ssd1306_command(0x2E);
+[e ( _ssd1306_command (1 -> -> 46 `i `uc ]
+"451
+[; ;SSD1306.c: 451: }
+[e :UE 25 ]
+}
+"456
+[; ;SSD1306.c: 456: void display_dim(_Bool dim)
+[v _display_dim `(v ~T0 @X0 1 ef1`a ]
+"457
+[; ;SSD1306.c: 457: {
+{
+[e :U _display_dim ]
+"456
+[; ;SSD1306.c: 456: void display_dim(_Bool dim)
+[v _dim `a ~T0 @X0 1 r1 ]
+"457
+[; ;SSD1306.c: 457: {
+[f ]
+"458
+[; ;SSD1306.c: 458:   uint8_t contrast;
+[v _contrast `uc ~T0 @X0 1 a ]
+"459
+[; ;SSD1306.c: 459:   if (dim)
+[e $ ! != -> _dim `i -> 0 `i 27  ]
+"460
+[; ;SSD1306.c: 460:     contrast = 0;
+[e = _contrast -> -> 0 `i `uc ]
+[e $U 28  ]
+"461
+[; ;SSD1306.c: 461:   else {
+[e :U 27 ]
+{
+"462
+[; ;SSD1306.c: 462:     if (_vccstate == 0x01)
+[e $ ! == -> __vccstate `i -> 1 `i 29  ]
+"463
+[; ;SSD1306.c: 463:       contrast = 0x9F;
+[e = _contrast -> -> 159 `i `uc ]
+[e $U 30  ]
+"464
+[; ;SSD1306.c: 464:     else
+[e :U 29 ]
+"465
+[; ;SSD1306.c: 465:       contrast = 0xCF;
+[e = _contrast -> -> 207 `i `uc ]
+[e :U 30 ]
+"466
+[; ;SSD1306.c: 466:   }
+}
+[e :U 28 ]
+"469
+[; ;SSD1306.c: 469:   ssd1306_command(0x81);
+[e ( _ssd1306_command (1 -> -> 129 `i `uc ]
+"470
+[; ;SSD1306.c: 470:   ssd1306_command(contrast);
+[e ( _ssd1306_command (1 _contrast ]
+"471
+[; ;SSD1306.c: 471: }
+[e :UE 26 ]
+}
+"473
+[; ;SSD1306.c: 473: void display(void)
+[v _display `(v ~T0 @X0 1 ef ]
+"474
+[; ;SSD1306.c: 474: {
+{
+[e :U _display ]
+[f ]
+"475
+[; ;SSD1306.c: 475:   uint16_t i;
+[v _i `us ~T0 @X0 1 a ]
+"476
+[; ;SSD1306.c: 476:   ssd1306_command(0x21);
+[e ( _ssd1306_command (1 -> -> 33 `i `uc ]
+"477
+[; ;SSD1306.c: 477:   ssd1306_command(0);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"478
+[; ;SSD1306.c: 478:   ssd1306_command(128 -1);
+[e ( _ssd1306_command (1 -> - -> 128 `i -> 1 `i `uc ]
+"480
+[; ;SSD1306.c: 480:   ssd1306_command(0x22);
+[e ( _ssd1306_command (1 -> -> 34 `i `uc ]
+"481
+[; ;SSD1306.c: 481:   ssd1306_command(0);
+[e ( _ssd1306_command (1 -> -> 0 `i `uc ]
+"483
+[; ;SSD1306.c: 483:     ssd1306_command(7);
+[e ( _ssd1306_command (1 -> -> 7 `i `uc ]
+"492
+[; ;SSD1306.c: 492:   for (i = 0; i < (128*64 / 8); i++) {
+{
+[e = _i -> -> 0 `i `us ]
+[e $ < -> _i `ui -> / * -> 128 `i -> 64 `i -> 8 `i `ui 32  ]
+[e $U 33  ]
+[e :U 32 ]
+{
+"493
+[; ;SSD1306.c: 493:       uint8_t x;
+[v _x `uc ~T0 @X0 1 a ]
+"500
+[; ;SSD1306.c: 500:       I2C1_Start();
+[e ( _I2C1_Start ..  ]
+"501
+[; ;SSD1306.c: 501:       I2C1_Wr(_i2caddr);
+[e ( _I2C1_Wr -> __i2caddr `i ]
+"502
+[; ;SSD1306.c: 502:       I2C1_Wr(0x40);
+[e ( _I2C1_Wr -> 64 `i ]
+"503
+[; ;SSD1306.c: 503:       for (x = 0; x < 16; x++) {
+{
+[e = _x -> -> 0 `i `uc ]
+[e $ < -> _x `i -> 16 `i 35  ]
+[e $U 36  ]
+[e :U 35 ]
+{
+"504
+[; ;SSD1306.c: 504:         I2C1_Wr(ssd1306_buffer[i]);
+[e ( _I2C1_Wr -> *U + &U _ssd1306_buffer * -> _i `ux -> -> # *U &U _ssd1306_buffer `ui `ux `i ]
+"505
+[; ;SSD1306.c: 505:         i++;
+[e ++ _i -> -> 1 `i `us ]
+"506
+[; ;SSD1306.c: 506:       }
+}
+[e ++ _x -> -> 1 `i `uc ]
+[e $ < -> _x `i -> 16 `i 35  ]
+[e :U 36 ]
+}
+"507
+[; ;SSD1306.c: 507:       i--;
+[e -- _i -> -> 1 `i `us ]
+"508
+[; ;SSD1306.c: 508:       I2C1_Stop();
+[e ( _I2C1_Stop ..  ]
+"510
+[; ;SSD1306.c: 510:     }
+}
+[e ++ _i -> -> 1 `i `us ]
+[e $ < -> _i `ui -> / * -> 128 `i -> 64 `i -> 8 `i `ui 32  ]
+[e :U 33 ]
+}
+"511
+[; ;SSD1306.c: 511: }
+[e :UE 31 ]
+}
+"513
+[; ;SSD1306.c: 513: void display_clear(void)
+[v _display_clear `(v ~T0 @X0 1 ef ]
+"514
+[; ;SSD1306.c: 514: {
+{
+[e :U _display_clear ]
+[f ]
+"515
+[; ;SSD1306.c: 515:   uint16_t i;
+[v _i `us ~T0 @X0 1 a ]
+"516
+[; ;SSD1306.c: 516:   for (i = 0; i < (128*64 / 8); i++)
+{
+[e = _i -> -> 0 `i `us ]
+[e $ < -> _i `ui -> / * -> 128 `i -> 64 `i -> 8 `i `ui 39  ]
+[e $U 40  ]
+[e :U 39 ]
+"517
+[; ;SSD1306.c: 517:     ssd1306_buffer[i] = 0;
+[e = *U + &U _ssd1306_buffer * -> _i `ux -> -> # *U &U _ssd1306_buffer `ui `ux -> -> 0 `i `uc ]
+[e ++ _i -> -> 1 `i `us ]
+[e $ < -> _i `ui -> / * -> 128 `i -> 64 `i -> 8 `i `ui 39  ]
+[e :U 40 ]
+}
+"518
+[; ;SSD1306.c: 518: }
+[e :UE 38 ]
+}
+"520
+[; ;SSD1306.c: 520: void fillRect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t color)
+[v _fillRect `(v ~T0 @X0 1 ef5`uc`uc`uc`uc`uc ]
+"521
+[; ;SSD1306.c: 521: {
+{
+[e :U _fillRect ]
+"520
+[; ;SSD1306.c: 520: void fillRect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t color)
+[v _x `uc ~T0 @X0 1 r1 ]
+[v _y `uc ~T0 @X0 1 r2 ]
+[v _w `uc ~T0 @X0 1 r3 ]
+[v _h `uc ~T0 @X0 1 r4 ]
+[v _color `uc ~T0 @X0 1 r5 ]
+"521
+[; ;SSD1306.c: 521: {
+[f ]
+"522
+[; ;SSD1306.c: 522:   uint8_t i;
+[v _i `uc ~T0 @X0 1 a ]
+"523
+[; ;SSD1306.c: 523:   for (i = x; i < x + w; i++)
+{
+[e = _i _x ]
+[e $U 46  ]
+[e :U 43 ]
+"524
+[; ;SSD1306.c: 524:     drawVLine(i, y, h, color);
+[e ( _drawVLine (4 , , , _i _y _h _color ]
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 46 ]
+[e $ < -> _i `i + -> _x `i -> _w `i 43  ]
+[e :U 44 ]
+}
+"525
+[; ;SSD1306.c: 525: }
+[e :UE 42 ]
+}
+"527
+[; ;SSD1306.c: 527: void fillScreen(void) {
+[v _fillScreen `(v ~T0 @X0 1 ef ]
+{
+[e :U _fillScreen ]
+[f ]
+"528
+[; ;SSD1306.c: 528:   fillRect(0, 0, 128, 64, 1);
+[e ( _fillRect (4 , , , , -> -> 0 `i `uc -> -> 0 `i `uc -> -> 128 `i `uc -> -> 64 `i `uc -> -> 1 `i `uc ]
+"529
+[; ;SSD1306.c: 529: }
+[e :UE 47 ]
+}
+"532
+[; ;SSD1306.c: 532: void invertDisplay(_Bool i)
+[v _invertDisplay `(v ~T0 @X0 1 ef1`a ]
+"533
+[; ;SSD1306.c: 533: {
+{
+[e :U _invertDisplay ]
+"532
+[; ;SSD1306.c: 532: void invertDisplay(_Bool i)
+[v _i `a ~T0 @X0 1 r1 ]
+"533
+[; ;SSD1306.c: 533: {
+[f ]
+"534
+[; ;SSD1306.c: 534:   if (i)
+[e $ ! != -> _i `i -> 0 `i 49  ]
+"535
+[; ;SSD1306.c: 535:     ssd1306_command(0xA7);
+[e ( _ssd1306_command (1 -> -> 167 `i `uc ]
+[e $U 50  ]
+"536
+[; ;SSD1306.c: 536:   else
+[e :U 49 ]
+"537
+[; ;SSD1306.c: 537:     ssd1306_command(0xA6);
+[e ( _ssd1306_command (1 -> -> 166 `i `uc ]
+[e :U 50 ]
+"538
+[; ;SSD1306.c: 538: }
+[e :UE 48 ]
+}
+"540
+[; ;SSD1306.c: 540: void setRotation(uint8_t m) {
+[v _setRotation `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _setRotation ]
+[v _m `uc ~T0 @X0 1 r1 ]
+[f ]
+"541
+[; ;SSD1306.c: 541:     rotation = (m & 3);
+[e = _rotation -> & -> _m `i -> 3 `i `uc ]
+"542
+[; ;SSD1306.c: 542:     switch(rotation) {
+[e $U 53  ]
+{
+"543
+[; ;SSD1306.c: 543:         case 0:
+[e :U 54 ]
+"544
+[; ;SSD1306.c: 544:         case 2:
+[e :U 55 ]
+"545
+[; ;SSD1306.c: 545:             _width = 128;
+[e = __width -> -> 128 `i `uc ]
+"546
+[; ;SSD1306.c: 546:             _height = 64;
+[e = __height -> -> 64 `i `uc ]
+"547
+[; ;SSD1306.c: 547:             break;
+[e $U 52  ]
+"548
+[; ;SSD1306.c: 548:         case 1:
+[e :U 56 ]
+"549
+[; ;SSD1306.c: 549:         case 3:
+[e :U 57 ]
+"550
+[; ;SSD1306.c: 550:             _width = 64;
+[e = __width -> -> 64 `i `uc ]
+"551
+[; ;SSD1306.c: 551:             _height = 128;
+[e = __height -> -> 128 `i `uc ]
+"552
+[; ;SSD1306.c: 552:             break;
+[e $U 52  ]
+"553
+[; ;SSD1306.c: 553:     }
+}
+[e $U 52  ]
+[e :U 53 ]
+[e [\ -> _rotation `i , $ -> 0 `i 54
+ , $ -> 2 `i 55
+ , $ -> 1 `i 56
+ , $ -> 3 `i 57
+ 52 ]
+[e :U 52 ]
+"554
+[; ;SSD1306.c: 554: }
+[e :UE 51 ]
+}
+"556
+[; ;SSD1306.c: 556: void drawHLine(uint8_t x, uint8_t y, uint8_t w, uint8_t color) {
+[v _drawHLine `(v ~T0 @X0 1 ef4`uc`uc`uc`uc ]
+{
+[e :U _drawHLine ]
+[v _x `uc ~T0 @X0 1 r1 ]
+[v _y `uc ~T0 @X0 1 r2 ]
+[v _w `uc ~T0 @X0 1 r3 ]
+[v _color `uc ~T0 @X0 1 r4 ]
+[f ]
+"557
+[; ;SSD1306.c: 557:   _Bool bSwap = 0;
+[v _bSwap `a ~T0 @X0 1 a ]
+[e = _bSwap -> -> 0 `i `a ]
+"558
+[; ;SSD1306.c: 558:   switch(rotation) {
+[e $U 60  ]
+{
+"559
+[; ;SSD1306.c: 559:     case 0:
+[e :U 61 ]
+"561
+[; ;SSD1306.c: 561:       break;
+[e $U 59  ]
+"562
+[; ;SSD1306.c: 562:     case 1:
+[e :U 62 ]
+"564
+[; ;SSD1306.c: 564:       bSwap = 1;
+[e = _bSwap -> -> 1 `i `a ]
+"565
+[; ;SSD1306.c: 565:       { uint8_t t = x; x = y; y = t; };
+{
+[v _t `uc ~T0 @X0 1 a ]
+[e = _t _x ]
+[e = _x _y ]
+[e = _y _t ]
+}
+"566
+[; ;SSD1306.c: 566:       x = 128 - x - 1;
+[e = _x -> - - -> 128 `i -> _x `i -> 1 `i `uc ]
+"567
+[; ;SSD1306.c: 567:       break;
+[e $U 59  ]
+"568
+[; ;SSD1306.c: 568:     case 2:
+[e :U 63 ]
+"570
+[; ;SSD1306.c: 570:       x = 128 - x - 1;
+[e = _x -> - - -> 128 `i -> _x `i -> 1 `i `uc ]
+"571
+[; ;SSD1306.c: 571:       y = 64 - y - 1;
+[e = _y -> - - -> 64 `i -> _y `i -> 1 `i `uc ]
+"572
+[; ;SSD1306.c: 572:       x -= (w-1);
+[e =- _x -> - -> _w `i -> 1 `i `uc ]
+"573
+[; ;SSD1306.c: 573:       break;
+[e $U 59  ]
+"574
+[; ;SSD1306.c: 574:     case 3:
+[e :U 64 ]
+"576
+[; ;SSD1306.c: 576:       bSwap = 1;
+[e = _bSwap -> -> 1 `i `a ]
+"577
+[; ;SSD1306.c: 577:       { uint8_t t = x; x = y; y = t; };
+{
+[v _t `uc ~T0 @X0 1 a ]
+[e = _t _x ]
+[e = _x _y ]
+[e = _y _t ]
+}
+"578
+[; ;SSD1306.c: 578:       y = 64 - y - 1;
+[e = _y -> - - -> 64 `i -> _y `i -> 1 `i `uc ]
+"579
+[; ;SSD1306.c: 579:       y -= (w-1);
+[e =- _y -> - -> _w `i -> 1 `i `uc ]
+"580
+[; ;SSD1306.c: 580:       break;
+[e $U 59  ]
+"581
+[; ;SSD1306.c: 581:   }
+}
+[e $U 59  ]
+[e :U 60 ]
+[e [\ -> _rotation `i , $ -> 0 `i 61
+ , $ -> 1 `i 62
+ , $ -> 2 `i 63
+ , $ -> 3 `i 64
+ 59 ]
+[e :U 59 ]
+"583
+[; ;SSD1306.c: 583:   if(bSwap) {
+[e $ ! != -> _bSwap `i -> 0 `i 65  ]
+{
+"584
+[; ;SSD1306.c: 584:     drawFastVLineInternal(x, y, w, color);
+[e ( _drawFastVLineInternal (4 , , , _x _y _w _color ]
+"585
+[; ;SSD1306.c: 585:   } else {
+}
+[e $U 66  ]
+[e :U 65 ]
+{
+"586
+[; ;SSD1306.c: 586:     drawFastHLineInternal(x, y, w, color);
+[e ( _drawFastHLineInternal (4 , , , _x _y _w _color ]
+"587
+[; ;SSD1306.c: 587:   }
+}
+[e :U 66 ]
+"588
+[; ;SSD1306.c: 588: }
+[e :UE 58 ]
+}
+"590
+[; ;SSD1306.c: 590: void drawFastHLineInternal(uint8_t x, uint8_t y, uint8_t w, uint8_t color) {
+[v _drawFastHLineInternal `(v ~T0 @X0 1 ef4`uc`uc`uc`uc ]
+{
+[e :U _drawFastHLineInternal ]
+[v _x `uc ~T0 @X0 1 r1 ]
+[v _y `uc ~T0 @X0 1 r2 ]
+[v _w `uc ~T0 @X0 1 r3 ]
+[v _color `uc ~T0 @X0 1 r4 ]
+[f ]
+"591
+[; ;SSD1306.c: 591:   register uint8_t *pBuf, mask;
+[v _pBuf `*uc ~T0 @X0 1 A ]
+[v _mask `uc ~T0 @X0 1 A ]
+"593
+[; ;SSD1306.c: 593:   if(y >= 64) { return; }
+[e $ ! >= -> _y `i -> 64 `i 68  ]
+{
+[e $UE 67  ]
+}
+[e :U 68 ]
+"596
+[; ;SSD1306.c: 596:   if( (x + w) > 128) {
+[e $ ! > + -> _x `i -> _w `i -> 128 `i 69  ]
+{
+"597
+[; ;SSD1306.c: 597:     w = (128 - x);
+[e = _w -> - -> 128 `i -> _x `i `uc ]
+"598
+[; ;SSD1306.c: 598:   }
+}
+[e :U 69 ]
+"601
+[; ;SSD1306.c: 601:   pBuf = ssd1306_buffer;
+[e = _pBuf &U _ssd1306_buffer ]
+"603
+[; ;SSD1306.c: 603:   pBuf += ((uint16_t)(y/8) * 128);
+[e =+ _pBuf * -> * -> -> / -> _y `i -> 8 `i `us `ui -> -> 128 `i `ui `ux -> -> # *U _pBuf `ui `ux ]
+"605
+[; ;SSD1306.c: 605:   pBuf += x;
+[e =+ _pBuf * -> -> _x `i `x -> -> # *U _pBuf `i `x ]
+"607
+[; ;SSD1306.c: 607:   mask = 1 << (y&7);
+[e = _mask -> << -> 1 `i & -> _y `i -> 7 `i `uc ]
+"609
+[; ;SSD1306.c: 609:   switch (color)
+[e $U 71  ]
+"610
+[; ;SSD1306.c: 610:   {
+{
+"611
+[; ;SSD1306.c: 611:     case 1: while(w--) { *pBuf++ |= mask; }; break;
+[e :U 72 ]
+[e $U 73  ]
+[e :U 74 ]
+{
+[e =| *U ++ _pBuf * -> -> 1 `i `x -> -> # *U _pBuf `i `x -> _mask `uc ]
+}
+[e :U 73 ]
+[e $ != -> -- _w -> -> 1 `i `uc `i -> 0 `i 74  ]
+[e :U 75 ]
+[e $U 70  ]
+"612
+[; ;SSD1306.c: 612:     case 0: mask = ~mask; while(w--) { *pBuf++ &= mask; }; break;
+[e :U 76 ]
+[e = _mask -> ~ -> _mask `i `uc ]
+[e $U 77  ]
+[e :U 78 ]
+{
+[e =& *U ++ _pBuf * -> -> 1 `i `x -> -> # *U _pBuf `i `x -> _mask `uc ]
+}
+[e :U 77 ]
+[e $ != -> -- _w -> -> 1 `i `uc `i -> 0 `i 78  ]
+[e :U 79 ]
+[e $U 70  ]
+"613
+[; ;SSD1306.c: 613:     case 2: while(w--) { *pBuf++ ^= mask; }; break;
+[e :U 80 ]
+[e $U 81  ]
+[e :U 82 ]
+{
+[e =^ *U ++ _pBuf * -> -> 1 `i `x -> -> # *U _pBuf `i `x -> _mask `uc ]
+}
+[e :U 81 ]
+[e $ != -> -- _w -> -> 1 `i `uc `i -> 0 `i 82  ]
+[e :U 83 ]
+[e $U 70  ]
+"614
+[; ;SSD1306.c: 614:   }
+}
+[e $U 70  ]
+[e :U 71 ]
+[e [\ -> _color `i , $ -> 1 `i 72
+ , $ -> 0 `i 76
+ , $ -> 2 `i 80
+ 70 ]
+[e :U 70 ]
+"615
+[; ;SSD1306.c: 615: }
+[e :UE 67 ]
+}
+"617
+[; ;SSD1306.c: 617: void drawVLine(uint8_t x, uint8_t y, uint8_t h, uint8_t color) {
+[v _drawVLine `(v ~T0 @X0 1 ef4`uc`uc`uc`uc ]
+{
+[e :U _drawVLine ]
+[v _x `uc ~T0 @X0 1 r1 ]
+[v _y `uc ~T0 @X0 1 r2 ]
+[v _h `uc ~T0 @X0 1 r3 ]
+[v _color `uc ~T0 @X0 1 r4 ]
+[f ]
+"618
+[; ;SSD1306.c: 618:   _Bool bSwap = 0;
+[v _bSwap `a ~T0 @X0 1 a ]
+[e = _bSwap -> -> 0 `i `a ]
+"619
+[; ;SSD1306.c: 619:   switch(rotation) {
+[e $U 86  ]
+{
+"620
+[; ;SSD1306.c: 620:     case 0:
+[e :U 87 ]
+"621
+[; ;SSD1306.c: 621:       break;
+[e $U 85  ]
+"622
+[; ;SSD1306.c: 622:     case 1:
+[e :U 88 ]
+"624
+[; ;SSD1306.c: 624:       bSwap = 1;
+[e = _bSwap -> -> 1 `i `a ]
+"625
+[; ;SSD1306.c: 625:       { uint8_t t = x; x = y; y = t; };
+{
+[v _t `uc ~T0 @X0 1 a ]
+[e = _t _x ]
+[e = _x _y ]
+[e = _y _t ]
+}
+"626
+[; ;SSD1306.c: 626:       x = 128 - x - 1;
+[e = _x -> - - -> 128 `i -> _x `i -> 1 `i `uc ]
+"627
+[; ;SSD1306.c: 627:       x -= (h-1);
+[e =- _x -> - -> _h `i -> 1 `i `uc ]
+"628
+[; ;SSD1306.c: 628:       break;
+[e $U 85  ]
+"629
+[; ;SSD1306.c: 629:     case 2:
+[e :U 89 ]
+"631
+[; ;SSD1306.c: 631:       x = 128 - x - 1;
+[e = _x -> - - -> 128 `i -> _x `i -> 1 `i `uc ]
+"632
+[; ;SSD1306.c: 632:       y = 64 - y - 1;
+[e = _y -> - - -> 64 `i -> _y `i -> 1 `i `uc ]
+"633
+[; ;SSD1306.c: 633:       y -= (h-1);
+[e =- _y -> - -> _h `i -> 1 `i `uc ]
+"634
+[; ;SSD1306.c: 634:       break;
+[e $U 85  ]
+"635
+[; ;SSD1306.c: 635:     case 3:
+[e :U 90 ]
+"637
+[; ;SSD1306.c: 637:       bSwap = 1;
+[e = _bSwap -> -> 1 `i `a ]
+"638
+[; ;SSD1306.c: 638:       { uint8_t t = x; x = y; y = t; };
+{
+[v _t `uc ~T0 @X0 1 a ]
+[e = _t _x ]
+[e = _x _y ]
+[e = _y _t ]
+}
+"639
+[; ;SSD1306.c: 639:       y = 64 - y - 1;
+[e = _y -> - - -> 64 `i -> _y `i -> 1 `i `uc ]
+"640
+[; ;SSD1306.c: 640:       break;
+[e $U 85  ]
+"641
+[; ;SSD1306.c: 641:   }
+}
+[e $U 85  ]
+[e :U 86 ]
+[e [\ -> _rotation `i , $ -> 0 `i 87
+ , $ -> 1 `i 88
+ , $ -> 2 `i 89
+ , $ -> 3 `i 90
+ 85 ]
+[e :U 85 ]
+"643
+[; ;SSD1306.c: 643:   if(bSwap) {
+[e $ ! != -> _bSwap `i -> 0 `i 91  ]
+{
+"644
+[; ;SSD1306.c: 644:     drawFastHLineInternal(x, y, h, color);
+[e ( _drawFastHLineInternal (4 , , , _x _y _h _color ]
+"645
+[; ;SSD1306.c: 645:   } else {
+}
+[e $U 92  ]
+[e :U 91 ]
+{
+"646
+[; ;SSD1306.c: 646:     drawFastVLineInternal(x, y, h, color);
+[e ( _drawFastVLineInternal (4 , , , _x _y _h _color ]
+"647
+[; ;SSD1306.c: 647:   }
+}
+[e :U 92 ]
+"648
+[; ;SSD1306.c: 648: }
+[e :UE 84 ]
+}
+"650
+[; ;SSD1306.c: 650: void drawFastVLineInternal(uint8_t x, uint8_t __y, uint8_t __h, uint8_t color) {
+[v _drawFastVLineInternal `(v ~T0 @X0 1 ef4`uc`uc`uc`uc ]
+{
+[e :U _drawFastVLineInternal ]
+[v _x `uc ~T0 @X0 1 r1 ]
+[v ___y `uc ~T0 @X0 1 r2 ]
+[v ___h `uc ~T0 @X0 1 r3 ]
+[v _color `uc ~T0 @X0 1 r4 ]
+[f ]
+"652
+[; ;SSD1306.c: 652:   register uint8_t *pBuf, mod, y, h, mask;
+[v _pBuf `*uc ~T0 @X0 1 A ]
+[v _mod `uc ~T0 @X0 1 A ]
+[v _y `uc ~T0 @X0 1 A ]
+[v _h `uc ~T0 @X0 1 A ]
+[v _mask `uc ~T0 @X0 1 A ]
+"653
+[; ;SSD1306.c: 653:   static uint8_t premask[8] = { 0x00, 0x80, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC, 0xFE };
+[v F185 `uc ~T0 @X0 -> 8 `i s premask ]
+[i F185
+:U ..
+-> -> 0 `i `uc
+-> -> 128 `i `uc
+-> -> 192 `i `uc
+-> -> 224 `i `uc
+-> -> 240 `i `uc
+-> -> 248 `i `uc
+-> -> 252 `i `uc
+-> -> 254 `i `uc
+..
+]
+"655
+[; ;SSD1306.c: 655:   if(x >= 128) { return; }
+[e $ ! >= -> _x `i -> 128 `i 94  ]
+{
+[e $UE 93  ]
+}
+[e :U 94 ]
+"658
+[; ;SSD1306.c: 658:   if( (__y + __h) > 64) {
+[e $ ! > + -> ___y `i -> ___h `i -> 64 `i 95  ]
+{
+"659
+[; ;SSD1306.c: 659:     __h = (64 - __y);
+[e = ___h -> - -> 64 `i -> ___y `i `uc ]
+"660
+[; ;SSD1306.c: 660:   }
+}
+[e :U 95 ]
+"663
+[; ;SSD1306.c: 663:   y = __y;
+[e = _y ___y ]
+"664
+[; ;SSD1306.c: 664:   h = __h;
+[e = _h ___h ]
+"667
+[; ;SSD1306.c: 667:   pBuf = ssd1306_buffer;
+[e = _pBuf &U _ssd1306_buffer ]
+"669
+[; ;SSD1306.c: 669:   pBuf += ((uint16_t)(y/8) * 128);
+[e =+ _pBuf * -> * -> -> / -> _y `i -> 8 `i `us `ui -> -> 128 `i `ui `ux -> -> # *U _pBuf `ui `ux ]
+"671
+[; ;SSD1306.c: 671:   pBuf += x;
+[e =+ _pBuf * -> -> _x `i `x -> -> # *U _pBuf `i `x ]
+"674
+[; ;SSD1306.c: 674:   mod = (y&7);
+[e = _mod -> & -> _y `i -> 7 `i `uc ]
+"675
+[; ;SSD1306.c: 675:   if(mod) {
+[e $ ! != -> _mod `i -> 0 `i 96  ]
+{
+"677
+[; ;SSD1306.c: 677:     mod = 8-mod;
+[e = _mod -> - -> 8 `i -> _mod `i `uc ]
+"679
+[; ;SSD1306.c: 679:     mask = premask[mod];
+[e = _mask *U + &U F185 * -> _mod `ux -> -> # *U &U F185 `ui `ux ]
+"682
+[; ;SSD1306.c: 682:     if( h < mod) {
+[e $ ! < -> _h `i -> _mod `i 97  ]
+{
+"683
+[; ;SSD1306.c: 683:       mask &= (0XFF >> (mod-h));
+[e =& _mask -> >> -> 255 `i - -> _mod `i -> _h `i `uc ]
+"684
+[; ;SSD1306.c: 684:     }
+}
+[e :U 97 ]
+"686
+[; ;SSD1306.c: 686:   switch (color)
+[e $U 99  ]
+"687
+[; ;SSD1306.c: 687:     {
+{
+"688
+[; ;SSD1306.c: 688:     case 1: *pBuf |= mask; break;
+[e :U 100 ]
+[e =| *U _pBuf -> _mask `uc ]
+[e $U 98  ]
+"689
+[; ;SSD1306.c: 689:     case 0: *pBuf &= ~mask; break;
+[e :U 101 ]
+[e =& *U _pBuf -> ~ -> _mask `i `uc ]
+[e $U 98  ]
+"690
+[; ;SSD1306.c: 690:     case 2: *pBuf ^= mask; break;
+[e :U 102 ]
+[e =^ *U _pBuf -> _mask `uc ]
+[e $U 98  ]
+"691
+[; ;SSD1306.c: 691:     }
+}
+[e $U 98  ]
+[e :U 99 ]
+[e [\ -> _color `i , $ -> 1 `i 100
+ , $ -> 0 `i 101
+ , $ -> 2 `i 102
+ 98 ]
+[e :U 98 ]
+"694
+[; ;SSD1306.c: 694:     if(h<mod) { return; }
+[e $ ! < -> _h `i -> _mod `i 103  ]
+{
+[e $UE 93  ]
+}
+[e :U 103 ]
+"696
+[; ;SSD1306.c: 696:     h -= mod;
+[e =- _h -> _mod `uc ]
+"698
+[; ;SSD1306.c: 698:     pBuf += 128;
+[e =+ _pBuf * -> -> 128 `i `x -> -> # *U _pBuf `i `x ]
+"699
+[; ;SSD1306.c: 699:   }
+}
+[e :U 96 ]
+"703
+[; ;SSD1306.c: 703:   if(h >= 8) {
+[e $ ! >= -> _h `i -> 8 `i 104  ]
+{
+"704
+[; ;SSD1306.c: 704:     if (color == 2) {
+[e $ ! == -> _color `i -> 2 `i 105  ]
+{
+"705
+[; ;SSD1306.c: 705:       do {
+[e :U 108 ]
+{
+"706
+[; ;SSD1306.c: 706:       *pBuf=~(*pBuf);
+[e = *U _pBuf -> ~ -> *U _pBuf `i `uc ]
+"709
+[; ;SSD1306.c: 709:         pBuf += 128;
+[e =+ _pBuf * -> -> 128 `i `x -> -> # *U _pBuf `i `x ]
+"712
+[; ;SSD1306.c: 712:         h -= 8;
+[e =- _h -> -> 8 `i `uc ]
+"713
+[; ;SSD1306.c: 713:       } while(h >= 8);
+}
+[e $ >= -> _h `i -> 8 `i 108  ]
+[e :U 107 ]
+"714
+[; ;SSD1306.c: 714:       }
+}
+[e $U 109  ]
+"715
+[; ;SSD1306.c: 715:     else {
+[e :U 105 ]
+{
+"717
+[; ;SSD1306.c: 717:       register uint8_t val = (color == 1) ? 255 : 0;
+[v _val `uc ~T0 @X0 1 A ]
+[e = _val -> ? == -> _color `i -> 1 `i : -> 255 `i -> 0 `i `uc ]
+"719
+[; ;SSD1306.c: 719:       do {
+[e :U 112 ]
+{
+"721
+[; ;SSD1306.c: 721:       *pBuf = val;
+[e = *U _pBuf _val ]
+"724
+[; ;SSD1306.c: 724:         pBuf += 128;
+[e =+ _pBuf * -> -> 128 `i `x -> -> # *U _pBuf `i `x ]
+"727
+[; ;SSD1306.c: 727:         h -= 8;
+[e =- _h -> -> 8 `i `uc ]
+"728
+[; ;SSD1306.c: 728:       } while(h >= 8);
+}
+[e $ >= -> _h `i -> 8 `i 112  ]
+[e :U 111 ]
+"729
+[; ;SSD1306.c: 729:       }
+}
+[e :U 109 ]
+"730
+[; ;SSD1306.c: 730:     }
+}
+[e :U 104 ]
+"733
+[; ;SSD1306.c: 733:   if(h) {
+[e $ ! != -> _h `i -> 0 `i 113  ]
+{
+"737
+[; ;SSD1306.c: 737:     static uint8_t postmask[8] = {0x00, 0x01, 0x03, 0x07, 0x0F, 0x1F, 0x3F, 0x7F };
+[v F187 `uc ~T0 @X0 -> 8 `i s postmask ]
+[i F187
+:U ..
+-> -> 0 `i `uc
+-> -> 1 `i `uc
+-> -> 3 `i `uc
+-> -> 7 `i `uc
+-> -> 15 `i `uc
+-> -> 31 `i `uc
+-> -> 63 `i `uc
+-> -> 127 `i `uc
+..
+]
+"738
+[; ;SSD1306.c: 738:     register uint8_t mask;
+[v _mask `uc ~T0 @X0 1 A ]
+"739
+[; ;SSD1306.c: 739:     mod = h & 7;
+[e = _mod -> & -> _h `i -> 7 `i `uc ]
+"740
+[; ;SSD1306.c: 740:     mask = postmask[mod];
+[e = _mask *U + &U F187 * -> _mod `ux -> -> # *U &U F187 `ui `ux ]
+"741
+[; ;SSD1306.c: 741:     switch (color)
+[e $U 115  ]
+"742
+[; ;SSD1306.c: 742:     {
+{
+"743
+[; ;SSD1306.c: 743:       case 1: *pBuf |= mask; break;
+[e :U 116 ]
+[e =| *U _pBuf -> _mask `uc ]
+[e $U 114  ]
+"744
+[; ;SSD1306.c: 744:       case 0: *pBuf &= ~mask; break;
+[e :U 117 ]
+[e =& *U _pBuf -> ~ -> _mask `i `uc ]
+[e $U 114  ]
+"745
+[; ;SSD1306.c: 745:       case 2: *pBuf ^= mask; break;
+[e :U 118 ]
+[e =^ *U _pBuf -> _mask `uc ]
+[e $U 114  ]
+"746
+[; ;SSD1306.c: 746:     }
+}
+[e $U 114  ]
+[e :U 115 ]
+[e [\ -> _color `i , $ -> 1 `i 116
+ , $ -> 0 `i 117
+ , $ -> 2 `i 118
+ 114 ]
+[e :U 114 ]
+"747
+[; ;SSD1306.c: 747:   }
+}
+[e :U 113 ]
+"748
+[; ;SSD1306.c: 748: }
+[e :UE 93 ]
+}
